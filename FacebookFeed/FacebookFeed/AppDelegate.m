@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FeedController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
+    [_window makeKeyAndVisible];
+    
+    UICollectionViewFlowLayout *flow = [UICollectionViewFlowLayout new];
+    FeedController *feed = [[FeedController alloc] initWithCollectionViewLayout:flow];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:feed];
+    _window.rootViewController = navController;
+    
+    //setting nav bar color and text color
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:51/255.0 green:90/255.0 blue:149/255.0 alpha:1]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    application.statusBarStyle = UIStatusBarStyleLightContent;
+    
+    
     return YES;
 }
 
